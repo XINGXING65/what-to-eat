@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>今天吃啥</title>
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23F26B3A'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header class="app-header">
+    <h1 class="app-title">今天吃啥</h1>
+    <p class="app-subtitle">点一下，帮你定下两道</p>
+  </header>
+
+  <main class="stage">
+    <section class="result-grid" id="resultGrid" aria-live="polite" aria-label="抽取结果"></section>
+    <p class="hint" id="hint" hidden></p>
+  </main>
+
+  <footer class="action-bar">
+    <button type="button" class="btn-primary" id="drawBtn">开始抽</button>
+    <p class="data-path">菜品数据在 <code>data/dishes.js</code></p>
+  </footer>
+
+  <!-- 顺序不可调换：先加载数据，再加载逻辑 -->
+  <script src="data/dishes.js"></script>
+  <script src="app.js"></script>
+
+</body>
+
+</html>
