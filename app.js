@@ -1,8 +1,3 @@
-/* ============================================================
-   今天吃啥 —— 逻辑
-   读取菜品数据 → 归一化 → 随机抽 2 道 → 渲染 → 绑定事件
-   ============================================================ */
-
 'use strict'
 ;(function () {
 	// 与 styles.css 中 cardIn 动画时长保持一致
@@ -12,7 +7,7 @@
 	var drawBtn = document.getElementById('drawBtn')
 	var hint = document.getElementById('hint')
 
-	var pool = [] // 归一化后的菜品池
+	var pool = [] // 菜品池
 	var currentPair = [] // 当前展示的两道菜
 	var hasDrawn = false // 是否已经抽过，决定按钮文案
 	var busy = false // 防连点
@@ -26,7 +21,7 @@
 		var raw = window.DISHES
 
 		if (!Array.isArray(raw)) {
-			console.warn('[今天吃啥] 没读到菜品数组。请检查 data/dishes.js 里是否有 window.DISHES = [ ... ];')
+			console.warn('暂无数据，请检查数据是否完整！')
 			return []
 		}
 
@@ -66,9 +61,7 @@
 		return result
 	}
 
-	/* ------------------------------------------------------------
-     随机抽取
-     ------------------------------------------------------------ */
+	/* 随机抽取 */
 	function drawOnce(list) {
 		var first = Math.floor(Math.random() * list.length)
 		var second = Math.floor(Math.random() * (list.length - 1))
@@ -97,9 +90,7 @@
 		return pair
 	}
 
-	/* ------------------------------------------------------------
-     渲染
-     ------------------------------------------------------------ */
+	/* 渲染 */
 	function el(tag, className, text) {
 		var node = document.createElement(tag)
 		if (className) node.className = className
@@ -164,9 +155,7 @@
 		resultGrid.replaceChildren(frag)
 	}
 
-	/* ------------------------------------------------------------
-     状态与提示
-     ------------------------------------------------------------ */
+	/* 状态与提示 */
 	function showHint(message) {
 		hint.textContent = message
 		hint.hidden = false
@@ -203,9 +192,7 @@
 		hideHint()
 	}
 
-	/* ------------------------------------------------------------
-     交互
-     ------------------------------------------------------------ */
+	/* 交互 */
 	function handleDraw() {
 		if (busy || pool.length < 2) return
 
